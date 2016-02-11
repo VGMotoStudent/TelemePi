@@ -1,4 +1,5 @@
-# RPi Ad-hoc Server Setup
+# RPi Ad-hoc Network Setup
+> El método no está todavia probado y puede no funcionar
 
 ## Objetivo
 El objetivo es construir un servidor web austosuficiente dentro de una Raspberry Pi con su propia red, a la que solo los ususarios autenticados por contraseña se podrán conectar. Una vez dentro de la red se tendrá acceso al servidor web mediante HHTP o a la propia Raspberry Pi mediante SSH
@@ -105,7 +106,6 @@ sudo update-rc.d -f isc-dhcp-server remove
 
 ```
 # RPi Network Conf Bootstrapper
- 
 createAdHocNetwork(){
     echo "Creating ad-hoc network"
     ifconfig wlan0 down
@@ -116,7 +116,6 @@ createAdHocNetwork(){
     /usr/sbin/dhcpd wlan0
     echo "Ad-hoc network created"
 }
- 
 echo "================================="
 echo "RPi Network Conf Bootstrapper 0.1"
 echo "================================="
@@ -145,14 +144,10 @@ do
         echo "Not in range, WiFi with SSID:" $ssid
     fi
 done
- 
 if ! $connected; then
     createAdHocNetwork
 fi
- 
 exit 0
 ```
 
 Reiniciamos el sistema y probamos que todo funciona correctamente.
-
-### Instalar el servidor
