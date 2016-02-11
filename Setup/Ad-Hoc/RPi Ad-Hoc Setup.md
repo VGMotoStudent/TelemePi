@@ -67,12 +67,10 @@ En caso de no poder conectarnos al router, haremos que la propia placa cree su p
 sudo apt-get update
 sudo apt-get install isc-dhcp-server
 ```
-
 2. Añadimos la siguiente linea en el fichero ```/etc/default/isc-dhcp-server```. Usando el nombre de nuestra interfaz:
 ```
 INTERFACES="wlan0"
 ```
-
 3. Añadimos una configuracioón para el servidor DHCP modiicando el archivo ```/etc/dhcp/dhcpd.conf```. la configuración quedaría asi:
 ```
 DHCPDARGS=wlan0;
@@ -86,7 +84,6 @@ subnet 10.0.0.0 netmask 255.255.255.0 {
 	range 10.0.0.2 10.0.0.20; #IP range to offer
 }
 ```
-
 4. Modificamos la configuración de las interfaces para que use primero la interfaz inalámbrica. Esto lo hacemos modificando el archivo ```/etc/network/interfaces```. Quedaría algo como esto:
 ```
 auto lo wlan0
@@ -96,14 +93,11 @@ iface eth0 inet dhcp
 allow-hotplug wlan0
 iface wlan0 inet manual
 ```
-
 5. Mediante el siguiente comando hacemos que el servidor DHCP no se inicie automáticamente al arranacr el sistema:
 ```
 sudo update-rc.d -f isc-dhcp-server remove
 ```
-
 6. Creamos un script para que en caso de no poder ocnectarse a la red que hemos configurado, la Raspberry Pi cree su propia red Ad-hoc a la que nos podremos conectar. Para que el script se ejecute nada mas arrancar el dispositivo lo incluiremos en el archivo '''/etc/rc.local'''. El script quedaría de la siguiente manera:
-
 ```
 # RPi Network Conf Bootstrapper
 createAdHocNetwork(){

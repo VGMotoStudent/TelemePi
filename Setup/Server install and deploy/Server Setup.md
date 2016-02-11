@@ -6,12 +6,10 @@
 ```bash
 $ sudo apt-get install python3-pip
 ```
-
 2. Instalar Django para Python 3
 ```bash
 $ sudo pip3 install Django==1.9.2 # Ultima version estable (11-02-2016)
 ```
-
 3. Probar que Django esta instalado correctamente
 ```bash
 $ python3 -c "import django; print(django.get_version())"
@@ -33,14 +31,12 @@ Entonces creara una carpeta con lo siguiente
         urls.py
         wsgi.py
 ```
-
 2. Para lanzar el servidor hacemos lo siguiente
 ```bash
 $ python3 manage.py runserver # Por defecto localhost:8000
 $ python3 manage.py runserver 8080
 $ python3 manage.py runserver 0.0.0.0:8080
 ```
-
 3. Para crear una App en Django haremos lo siguiente
 ```bash
 $ python manage.py startapp [NOMBRE-APP]
@@ -88,7 +84,6 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse("Hello, world! You're at the DjangoAPP index.\n")
 ```
-
 2. Creamos dentro de uestra app un archivo llamado ```urls.py```. Mapeamos la URL añadiendo lo siguiente al archivo ```urls.py``` de nuestra app:
 ```python
 from django.conf.urls import url
@@ -97,7 +92,6 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
 ]
 ```
-
 3. Modificamso el archivo ```urls.py``` **del proyecto** para que quede de la siguiente manera:
 ```python
 from django.conf.urls import include, url
@@ -107,12 +101,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 ]
 ```
-
 4. Lanzamos el servidor:
 ```bash
 $ python3 manage.py runserver
 ```
-
 5. Desde una terminal del mismo dispositivo podemos comprobar que funciona usando ```curl``` de la siguiente manera:
 ```bash
 $ curl -L http://localhost:8000/AppPRUEBA
